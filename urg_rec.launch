@@ -1,0 +1,5 @@
+<launch>
+	<include file="urg_lidar.launch"/>
+	<node pkg="rosbag" type="record" name="rosbag_record" args="-o /home/igor/sd/bag --lz4 --split --size=20 /scan ">
+	</node>
+</launch>
