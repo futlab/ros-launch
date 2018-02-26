@@ -1,6 +1,6 @@
 <launch>
 	<!--<include file="urg_lidar.launch"/>
 	<include file="px4.launch"/>-->
-	<node pkg="rosbag" type="record" name="rosbag_record" args="-o /home/igor/sd/bag --lz4 --split --duration=60 --max-splits=100 /scan -e /mavros/.+">
+	<node pkg="rosbag" type="record" name="rosbag_record" args="-o /home/igor/sd/bag --lz4 --split --duration=60 --max-splits=100 /scan /encoder -e /mavros/.+">
 	</node>
 </launch>
