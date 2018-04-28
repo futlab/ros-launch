@@ -1,8 +1,6 @@
 <launch>
 	<!--<include file="urg_lidar.launch"/>
 	<include file="px4.launch"/>-->
-	<node pkg="rosbag" type="record" name="rosbag_record" args="-o /home/odroid/bag/rec --lz4 --split --duration=60 --max-splits=100 /scan /encoder /stereo/left/image_throttle /stereo/right/image_throttle -e /mavros/.+">
+	<node pkg="rosbag" type="record" name="rosbag_record" args="-o /home/odroid/bag/rec --lz4 --split --duration=60 --max-splits=100 /scan /encoder /stereo/image_throttle -e /mavros/.+">
 	</node>
-	<node pkg="topic_tools" type="throttle" name="throttle_l" args="messages /stereo/left/image_raw 1 /stereo/left/image_throttle"/>
-	<node pkg="topic_tools" type="throttle" name="throttle_r" args="messages /stereo/right/image_raw 1 /stereo/right/image_throttle"/>
 </launch>

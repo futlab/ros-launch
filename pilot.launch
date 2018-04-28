@@ -8,13 +8,22 @@
 
     <!--<node name="divide_to_ros" pkg="zed_worker" type="divide_to_ros.py" output="screen"></node>-->
 
-    <include file="$(find zed_cpu_ros)/launch/zed_cpu_ros.launch">
-    </include>
+    <node pkg="zed_cpu" type="zed_cpu" name="zed_cpu_node" output="screen" ns="stereo" required="true">
+	<param name="resolution" value="2"/> <!-- 0:1242 1:1080 2:720 3:376 -->
+	<param name="frame_rate" value="15"/>
+	<param name="load_zed_config" value="false"/>
+	<param name="show_image" value="false"/>
+	<param name="left_frame_id" value="left_frame"/>
+	<param name="right_frame_id" value="right_frame"/>
+	<param name="device_id" value="0"/>
+        <param name="pub_throttle" value="1.5"/>
+    </node>
 
     <node name="stereo_image_proc" args="stereo:=/stereo image:=image_rect_color" ns="stereo" pkg="stereo_image_proc" type="stereo_image_proc" output="screen">
     </node>
-	<node pkg="stereopilot" type="stereopilot" name="stereopilot" required="true" clear_params="true" output="screen">
-		<param name="max_out_fps" value="5" />
-		<!-- <param name="use_sim_time" value="false"/> -->
-	</node>
+
+    <node pkg="stereopilot" type="stereopilot" name="stereopilot" required="true" clear_params="true" output="screen">
+        <param name="max_out_fps" value="5" />
+        <!-- <param name="use_sim_time" value="false"/> -->
+    </node>
 </launch>
