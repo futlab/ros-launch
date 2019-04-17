@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="udp_target" default="127.0.0.1"/>
+    <arg name="svo_output_prefix" default="/home/nvidia/svo/rec"/>
+    <arg name="log_output" default="screen" />
+    <arg name="svo_filepath" default=""/>
+    <arg name="svo_max_record" default="30"/>
+    <node name="pilot" pkg="zed_pilot" type="pilot_node" required="true" output="$(arg log_output)">
+        <param name="max_out_fps" value="10" />
+        <param name="resolution" value="1" />
+        <param name="frame_rate" value="30" />
+        <param name="video_udp_target" value="$(arg udp_target)"/>
+        <param name="svo_output_prefix" value="$(arg svo_output_prefix)"/>
+        <param name="svo_filepath" value="$(arg svo_filepath)"/>
+        <param name="svo_max_record" value="$(arg svo_max_record)"/>
+        <param name="control_mat" value=""/>
+    </node>
+</launch>
